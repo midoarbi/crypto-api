@@ -5,6 +5,10 @@ In this episode we start work on our cryptocurrency dashboard, using a JSON API 
 Youtube: https://youtu.be/3ohRNCa1YaU
 ReactU: https://reactu.io/screencasts/6
 
+Help keep ReactU free by donating to the project:
+
+* Bitcoin: 1LxbzzxogbJrxT8d7e2CpnxQRezpzSJejq
+
 Video length: 32:22
 Skill level: Beginner
 
