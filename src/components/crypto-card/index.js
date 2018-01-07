@@ -9,6 +9,7 @@ class CryptoCard extends React.Component {
     this.state = {
       name: props.name,
       symbol: props.symbol,
+      logo: props.logo,
       price: null,
       lastPrice: null,
     }
@@ -39,31 +40,40 @@ class CryptoCard extends React.Component {
   priceChange(lastPrice, price) {
     const diff = lastPrice - price
     const change = diff / lastPrice
-    return (change * 100).toFixed(3)
+    const percent = (change * 100)
+    return (change === -Infinity
+      ? 0
+      : percent).toFixed(3)
   }
 
   render() {
-    const { name, symbol, price, lastPrice } = this.state
+    const { name, symbol, price, logo, lastPrice } = this.state
     const gainloss = lastPrice > price
       ? 'loss'
       : 'gain'
 
     return (
       <div className={`card ${gainloss}`}>
-        <div className='name'>
-          {name}
-          <span>({symbol})</span>
+        <div className='top'>
+          <div className='name'>
+            {name}
+            <span>({symbol})</span>
+          </div>
+
+          <div className={`percentage ${gainloss}`}>
+            {this.priceChange(lastPrice, price)}%
+          </div>
         </div>
 
-        <div className={`percentage ${gainloss}`}>
-          {this.priceChange(lastPrice, price)}%
-        </div>
+        <div className='bottom'>
+          <div className='logo'>
+            <img src={`${logo}`} alt={symbol} />
+          </div>
 
-        <div className='logo'>
-        </div>
-
-        <div className={`price ${gainloss}`}>
-          {price}
+          <div className={`price ${gainloss}`}>
+            ${price}
+            <span className={`triangle`} />
+          </div>
         </div>
       </div>
     )
